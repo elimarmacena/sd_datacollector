@@ -1,0 +1,118 @@
+{
+    "rabbit_version": "3.7.15",
+    "users": [
+        {
+            "name": "publisher_1",
+            "password_hash": "CvN7UHOHjtwHezqZ4rWjs1Iy/L6lqWxSg0mM9AZpBPR+Papy",
+            "hashing_algorithm": "rabbit_password_hashing_sha256",
+            "tags": "None"
+        },
+        {
+            "name": "publisher_2",
+            "password_hash": "xje/l3zF/c6osOBT1d5fOkwto0wfH6EwfAVu8N0Lldmo4h+k",
+            "hashing_algorithm": "rabbit_password_hashing_sha256",
+            "tags": "None"
+        },
+        {
+            "name": "guest",
+            "password_hash": "sLtk48rtsMYxaTwj59/NY7hK+jWsEDr7VBmohxNezYzr8Z8Z",
+            "hashing_algorithm": "rabbit_password_hashing_sha256",
+            "tags": "administrator"
+        },
+        {
+            "name": "publisher_3",
+            "password_hash": "JjNp3O6vCZJfy0sUHAqQIFQhHg6Mzug2N3venkT5xftes7bG",
+            "hashing_algorithm": "rabbit_password_hashing_sha256",
+            "tags": "None"
+        }
+    ],
+    "vhosts": [
+        {
+            "name": "/"
+        }
+    ],
+    "permissions": [
+        {
+            "user": "publisher_3",
+            "vhost": "/",
+            "configure": ".*",
+            "write": ".*",
+            "read": ".*"
+        },
+        {
+            "user": "publisher_1",
+            "vhost": "/",
+            "configure": ".*",
+            "write": ".*",
+            "read": ".*"
+        },
+        {
+            "user": "publisher_2",
+            "vhost": "/",
+            "configure": ".*",
+            "write": ".*",
+            "read": ".*"
+        },
+        {
+            "user": "guest",
+            "vhost": "/",
+            "configure": ".*",
+            "write": ".*",
+            "read": ".*"
+        }
+    ],
+    "topic_permissions": [
+        {
+            "user": "publisher_3",
+            "vhost": "/",
+            "exchange": "",
+            "write": ".*",
+            "read": ".*"
+        },
+        {
+            "user": "publisher_2",
+            "vhost": "/",
+            "exchange": "",
+            "write": ".*",
+            "read": ".*"
+        }
+    ],
+    "parameters": [],
+    "global_parameters": [
+        {
+            "name": "cluster_name",
+            "value": "rabbit1@rabbit1"
+        }
+    ],
+    "policies": [],
+    "queues": [
+        {
+            "name": "hello",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {}
+        }
+    ],
+    "exchanges": [
+        {
+            "name": "environment_collector",
+            "vhost": "/",
+            "type": "direct",
+            "durable": true,
+            "auto_delete": false,
+            "internal": false,
+            "arguments": {}
+        }
+    ],
+    "bindings": [
+        {
+            "source": "environment_collector",
+            "vhost": "/",
+            "destination": "hello",
+            "destination_type": "queue",
+            "routing_key": "environment.info",
+            "arguments": {}
+        }
+    ]
+}
