@@ -1,6 +1,7 @@
 import pika
 import environment_generator as data_fac
 import time
+import datetime
 
 print("THE SCRIPT WILL SEND INFORMATION EVERY 3 SECONDS TO THE MIDDLEWARE\n")
 print("To exit press CTRL+C")
@@ -18,10 +19,14 @@ channel = connection.channel()
 
 count = 0
 while(True):
+    #data information
     temperature = data_fac.temperature_generator()
     moisture = data_fac.moisture_generator()
     pressure = data_fac.pressure_generator()
-    information_pack = "%i;%i;%i" % (temperature,moisture,pressure)
+    location = [51.439399,-116.536460]
+    currentDT = datetime.datetime.now()
+    #-----------------
+    information_pack = "%d;%d;%d;%f;%f;%s" % (temperature,moisture,pressure,location[0],location[1],currentDT.strftime('%Y-%m-%d %H:%M:%S'))
     channel.queue_declare(queue='hello',durable=True)
     channel.basic_publish(exchange='',
                       routing_key='hello',

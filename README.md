@@ -3,6 +3,7 @@ Repositório destinado a aplicação de coleta de dados com auxilio de middlewar
 ## Tecnologias
 A aplicação faz uso das seguintes tecnologias:
 * RabbitMQ -  Menssage broken middleware
+* Peewee - ORM
 * Flask - Framework Python destinado ao back-end para o tratamento de dados e envio de informações
 * React.js - Framework Javascript destinado ao front-end
 ## Introdução
@@ -13,6 +14,12 @@ O sistema possui uma premissa básica, que se trata do envio de dados do ambient
 </p>
 
 ## Dependência
+* Comunicação com o banco de dados
+Como se trata de uma aplicação usando a linguagem Python para acessar o banco de dados é feito o uso da ORM peewee, na qual é necessaria fazer a instalação e pode ser feita da seguinte maneira:
+```bash
+pip3 install peewee
+```
+
 * Comunicação Python x RabbitMQ
 Uma vez que a simulação dos dispositivos de coleta de dados serão feitas via código na linguagem de programação Python é necessário a instalação da biblioteca de comunicação com o RabbitMq, o pika, a instalação deve ser feita da seguinte maneira:
 ```bash
