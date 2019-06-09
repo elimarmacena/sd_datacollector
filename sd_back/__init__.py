@@ -2,6 +2,7 @@ import os
 from flask import Flask
 from flask import json
 from flask import request
+from flask_cors import CORS
 #used to resolve the path problem
 import sys
 from os.path import dirname, abspath
@@ -14,6 +15,7 @@ from sd_back.environment.get_informations  import *
 def create_app(test_config=None):
 	# create and configure the app
 	app = Flask(__name__, instance_relative_config=True)
+	CORS(app)
 	app.config.from_mapping(
 		SECRET_KEY='dev',
 		DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
