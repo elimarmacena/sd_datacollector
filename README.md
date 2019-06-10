@@ -5,7 +5,7 @@ A aplicação faz uso das seguintes tecnologias:
 * RabbitMQ -  Menssage broken middleware
 * Peewee - ORM
 * Flask - Framework Python destinado ao back-end para o tratamento de dados e envio de informações
-* React.js - Framework Javascript destinado ao front-end
+* Vue.js - Framework Javascript destinado ao front-end
 ## Introdução
 O sistema possui uma premissa básica, que se trata do envio de dados do ambiente de diferentes locais para uma aplicação que irá fazer o tratamento das informações recebidas e efetuar a persistência dos dados em um banco de dados para a geração de relatórios.
 <p align="center">
