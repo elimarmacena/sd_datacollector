@@ -7,12 +7,11 @@ import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueRouter from 'vue-router'
-import ChartsPlot from './components/ChartsPlot/ChartsPlot'
+import '@/plugins/echarts'
 
 Vue.use(VueRouter)
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false
-Vue.component('chartsPlot', ChartsPlot)
 
 /* eslint-disable no-new */
 new Vue({
