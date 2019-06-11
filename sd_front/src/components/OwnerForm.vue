@@ -13,12 +13,9 @@
     </b-container>
     <div>
       <div>
-        <div class='chart-wrapper'>
-          <chart :options='chartOptionsBar'></chart>
-        </div>
         <hr>
         <div class='chart-wrapper'>
-          <chart :options='chartOptionsLine'></chart>
+          <chart id='chart' :options='plotData'></chart>
         </div>
       </div>
     </div>
@@ -46,7 +43,17 @@ export default {
       },
       color: ['#127ac2']
     },
-    plotData: {}
+    plotData: {
+      xAxis: { data: [] },
+      yAxis: { type: 'value' },
+      series: [{ type: 'line', data: [] }],
+      title: {
+        text: 'Quarterly Sales Results',
+        x: 'center',
+        textStyle: { fontSize: 24 }
+      },
+      color: ['#127ac2', '#f1111', '#f83c46']
+    }
   }),
   methods: {
     triggerRequest: function () {
@@ -58,17 +65,13 @@ export default {
           let temperature = response.data.map(info => info.temperature)
           let moisture = response.data.map(info => info.moisture)
           let pressure = response.data.map(info => info.pressure)
-          this.plotData = {
-            xAxis: { data: dates },
-            yAxis: { type: 'values' },
-            serie: [
-              { type: 'line', data: temperature },
-              { type: 'line', data: moisture },
-              { type: 'line', data: pressure }
-            ]
-          }
+          this.plotData.xAxis = { data: dates }
+          this.plotData.series = [
+            { type: 'line', data: temperature },
+            { type: 'line', data: moisture },
+            { type: 'line', data: pressure }
+          ]
         })
-      this.teste = this.chartOptionsBar
     }
   }
 }
