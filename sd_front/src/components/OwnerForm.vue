@@ -28,6 +28,19 @@ export default {
   name: 'OwnerForm',
   data: () => ({
     temperaturePlot: {
+      tooltip: {
+        trigger: 'axis'
+      },
+      toolbox: {
+        show: true,
+        feature: {
+          dataZoom: {
+            yAxisIndex: 'none'
+          },
+          restore: {},
+          saveAsImage: {}
+        }
+      },
       xAxis: { data: [] },
       yAxis: { type: 'value' },
       series: [{ type: 'line', data: [] }],
@@ -41,6 +54,19 @@ export default {
       color: ['#d88227']
     },
     moisturePlot: {
+      tooltip: {
+        trigger: 'axis'
+      },
+      toolbox: {
+        show: true,
+        feature: {
+          dataZoom: {
+            yAxisIndex: 'none'
+          },
+          restore: {},
+          saveAsImage: {}
+        }
+      },
       xAxis: { data: [] },
       yAxis: { type: 'value' },
       series: [{ type: 'line', data: [] }],
@@ -53,6 +79,19 @@ export default {
       color: ['#2f9bd6']
     },
     pressurePlot: {
+      tooltip: {
+        trigger: 'axis'
+      },
+      toolbox: {
+        show: true,
+        feature: {
+          dataZoom: {
+            yAxisIndex: 'none'
+          },
+          restore: {},
+          saveAsImage: {}
+        }
+      },
       xAxis: { data: [] },
       yAxis: { type: 'value' },
       series: [{ type: 'line', data: [] }],
