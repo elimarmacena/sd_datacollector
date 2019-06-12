@@ -53,63 +53,80 @@ def create_app(test_config=None):
 	# return data based between two temperatures
 	@app.route('/bytemperature')
 	def byTemperature():
-		minTemp = float(request.args.get('minTemp'))
-		maxTemp = float(request.args.get('maxTemp'))
-		if (maxTemp < minTemp):
-			maxTemp = minTemp
-		result = getByTemperature(minTemp, maxTemp)
-		response = app.response_class(
-			response=json.dumps(result),
-			status=200,
-			mimetype='application/json'
-		)
-		return response
-
-	# return data based in device owner
-	@app.route('/byOwner')
-	def byOwner():
-		ownerName = request.args.get('owner')
-		if(ownerName != None):
-			result = getByOwner(ownerName)
+		try:
+			minTemp = float(request.args.get('minTemp'))
+			maxTemp = float(request.args.get('maxTemp'))
+			if (maxTemp < minTemp):
+				maxTemp = minTemp
+			result = getByTemperature(minTemp, maxTemp)
 			response = app.response_class(
 				response=json.dumps(result),
 				status=200,
 				mimetype='application/json'
 			)
 			return response
+		except Exception as err:
+			print('Unable process the request.\n Erro type: %s' %(type(err)))
+		return None
+
+	# return data based in device owner
+	@app.route('/byOwner')
+	def byOwner():
+		try:
+			ownerName = request.args.get('owner')
+			if(ownerName != None):
+				result = getByOwner(ownerName)
+				response = app.response_class(
+					response=json.dumps(result),
+					status=200,
+					mimetype='application/json'
+				)
+				return response
+		except Exception as err:
+			print('Unable process the request.\n Erro type: %s' %(type(err)))
 		return None
 
 	# return data based in a specific day
 	@app.route('/atDay')
 	def atDay():
-		dateString = request.args.get('date')
-		if(dateString != None):
-			# spling using in json information
-			dateParametres = dateString.split('-')
-			result = getByDate(dateParametres)
-			response = app.response_class(
-				response=json.dumps(result),
-				status=200,
-				mimetype='application/json'
-			)
-			return response
+		try:
+			dateString = request.args.get('date')
+			if(dateString != None):
+				# spling using in json information
+				dateParametres = dateString.split('-')
+				result = getByDate(dateParametres)
+				response = app.response_class(
+					response=json.dumps(result),
+					status=200,
+					mimetype='application/json'
+				)
+				return response
+		except Exception as err:
+			print('Unable process the request.\n Erro type: %s' %(type(err)))
 		return None
 
 	@app.route('/interValDate')
 	def interValDate():
-		dateStringMin = request.args.get('dateMin')
-		dateStringMax = request.args.get('dateMax')
-		if(dateStringMax != None and dateStringMin != None):
-			dateMaxParameter = dateStringMax.split('-')
-			dateMinParameter = dateStringMin.split('-')
-			result = getByDateInterval(dateMinParameter, dateMaxParameter)
-			response = app.response_class(
-				response=json.dumps(result),
-				status=200,
-				mimetype='application/json'
-			)
-			return response
-		return None
+		try:
+			dateStringMin = request.args.get('dateMin')
+			dateStringMax = request.args.get('dateMax')
+		
+			if(dateStringMax != None and dateStringMin != None):
+				dateMaxParameter = dateStringMax.split('-')
+				dateMinParameter = dateStringMin.split('-')
+				result = getByDateInterval(dateMinParameter, dateMaxParameter)
+				response = app.response_class(
+					response=json.dumps(result),
+					status=200,
+					mimetype='application/json'
+				)
+				return response
+		except Exception as err:
+			print('Unable process the request.\n Erro type: %s' %(type(err)))
+		return app.response_class(
+					status=400,
+					mimetype='application/json'
+				)
 
 	@app.route('/getOwners')
 	def getOwners():
