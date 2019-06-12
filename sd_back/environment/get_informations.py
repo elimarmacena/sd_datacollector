@@ -66,8 +66,10 @@ def getByDate(dateParameters):
 	return resultList
 
 def getByDateInterval(dayMin,dayMax):
-	dateMin = datetime.date(int(dayMin[2]),int(dayMin[1]),int(dayMin[0]))
-	dateMax =  datetime.date(int(dayMax[2]),int(dayMax[1]),int(dayMax[0]))
+	#YEAR MONTH DAY
+	dateMin = datetime.date(int(dayMin[0]),int(dayMin[1]),int(dayMin[2]))
+	#YEAR MONTH DAY
+	dateMax =  datetime.date(int(dayMax[0]),int(dayMax[1]),int(dayMax[2]))
 	resultQuery = EnvironmentInfo.select().where( (EnvironmentInfo.send_data >= dateMin) & (EnvironmentInfo.send_data<=dateMax))
 	resultList = []
 	for info in resultQuery:
@@ -80,3 +82,6 @@ def getByDateInterval(dayMin,dayMax):
 						'owner'         :   info.owner}
 		resultList.append(hashResult)
 	return resultList
+def getOwnerList():
+	data_query = EnvironmentInfo.select(EnvironmentInfo.owner).distinct()
+	return data_query
